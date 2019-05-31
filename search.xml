@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2019%2F06%2F01%2Ftest%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[前端体系知识点（持续更新）]]></title>
     <url>%2F2019%2F05%2F06%2F%E5%89%8D%E7%AB%AF%E4%BD%93%E7%B3%BB%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[JavaScript基础变量和类型 1.JavaScript规定了几种语言类型； 1ECMAScript的基本 闭包是什么 123在函数嵌套中外部函数是没有方式访问到内部函数中的变量和函数，当一个嵌套函数引用外部函数的变量的时候，外部函数在执行的时候产生闭包。闭包的作用：闭包的作用就是在函数以外的任何地方访问到函数内的变量对象，使用闭包的内部函数在内存中执行完毕之后，引用的变量会一直存在函数中，延长了变量的声明周期。缺点：javascript有一个垃圾回收机制，在桟堆里声明的变量当在内存中调用并且没有使用的话，在运行当中就会被当成垃圾回收，当一个嵌套函数引用外部函数的变量的时候，外部函数在执行的时候产生闭包，由于闭包的特性变量会一直存在函数中javascript的回收机制收回不了闭包的引用，会导内存的泄露和性能的损耗。]]></content>
