@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="babel-handbook 介绍Babel 是一个通用的多用途 JavaScript 编译器。通过 Babel 你可以使用（并创建）下一代的 JavaScript，以及下一代的 JavaScript 工具。">
+<meta name="keywords" content="JS模块,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="babel使用">
+<meta property="og:url" content="http://yoursite.com/2017/10/22/babel使用/index.html">
+<meta property="og:site_name" content="xmlxyl&#39;s blog">
+<meta property="og:description" content="babel-handbook 介绍Babel 是一个通用的多用途 JavaScript 编译器。通过 Babel 你可以使用（并创建）下一代的 JavaScript，以及下一代的 JavaScript 工具。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-08T09:23:35.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="babel使用">
+<meta name="twitter:description" content="babel-handbook 介绍Babel 是一个通用的多用途 JavaScript 编译器。通过 Babel 你可以使用（并创建）下一代的 JavaScript，以及下一代的 JavaScript 工具。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xmlxyl's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/10/22/babel使用/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>babel使用 | xmlxyl's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmlxyl's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Make a little progress every day.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/babel使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xmlxyl">
+      <meta itemprop="description" content="Some notes when studying.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmlxyl's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">babel使用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-22 14:47:10" itemprop="dateCreated datePublished" datetime="2017-10-22T14:47:10+08:00">2017-10-22</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/babel/" itemprop="url" rel="index"><span itemprop="name">babel</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/user-handbook.md" target="_blank" rel="noopener">babel-handbook</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><a id="toc-introduction"></a>介绍</h1><p>Babel 是一个通用的多用途 JavaScript 编译器。通过 Babel 你可以使用（并创建）下一代的 JavaScript，以及下一代的 JavaScript 工具。<br><a id="more"></a><br>作为一种语言，JavaScript 在不断发展，新的标准／提案和新的特性层出不穷。 在得到广泛普及之前，Babel 能够让你提前（甚至数年）使用它们。</p>
+<p>Babel 把用最新标准编写的 JavaScript 代码向下编译成可以在今天随处可用的版本。 这一过程叫做“源码到源码”编译， 也被称为转换编译（transpiling，是一个自造合成词，即转换＋编译。以下也简称为转译）。</p>
+<h1 id="安装-Babel"><a href="#安装-Babel" class="headerlink" title="安装 Babel"></a><a id="toc-setting-up-babel"></a>安装 Babel</h1><p>由于 JavaScript 社区没有统一的构建工具、框架、平台等等，因此 Babel 正式集成了对所有主流工具的支持。 从 Gulp 到 Browserify，从 Ember 到 Meteor，不管你的环境设置如何，Babel 都有正式的集成支持。</p>
+<p>本手册的目的主要是介绍 Babel 内建方式的安装，不过你可以访问交互式的<a href="http://babeljs.io/docs/setup" target="_blank" rel="noopener">安装页面</a>来查看其它的整合方式。</p>
+<h2 id="babel-cli"><a href="#babel-cli" class="headerlink" title="babel-cli"></a><a id="toc-babel-cli"></a><code>babel-cli</code></h2><p>Babel 的 CLI 是一种在命令行下使用 Babel 编译文件的简单方法。</p>
+<p>让我们先全局安装它来学习基础知识。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --global babel-cli</span><br></pre></td></tr></table></figure>
+<p>我们可以这样编译我们的第一个文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ babel my-file.js</span><br></pre></td></tr></table></figure>
+<p>这将把编译后的结果直接输出至终端。使用 <code>--out-file</code> 或着 <code>-o</code> 可以将结果写入到指定的文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ babel example.js --out-file compiled.js</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">$ babel example.js -o compiled.js</span><br></pre></td></tr></table></figure>
+<p>如果我们想要把一个目录整个编译成一个新的目录，可以使用 <code>--out-dir</code> 或者 <code>-d</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ babel src --out-dir lib</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">$ babel src -d lib</span><br></pre></td></tr></table></figure>
+<h3 id="在项目内运行-Babel-CLI"><a href="#在项目内运行-Babel-CLI" class="headerlink" title=" 在项目内运行 Babel CLI"></a><a id="toc-running-babel-cli-from-within-a-project"></a> 在项目内运行 Babel CLI</h3><p>尽管你<em>可以</em>把 Babel CLI 全局安装在你的机器上，但是按项目逐个安装在<strong>本地</strong>会更好。</p>
+<p>有两个主要的原因。</p>
+<ol>
+<li>在同一台机器上的不同项目或许会依赖不同版本的 Babel 并允许你有选择的更新。</li>
+<li>这意味着你对工作环境没有隐式依赖，这让你的项目有很好的可移植性并且易于安装。</li>
+</ol>
+<p>要在（项目）本地安装 Babel CLI 可以运行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-cli</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>: 因为全局运行 Babel 通常不是什么好习惯所以如果你想要卸载全局安装的 Babel 的话，可以运行：</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall --global babel-cli</span><br></pre></td></tr></table></figure>
+<p>安装完成后，你的 <code>package.json</code> 应该如下所示：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"my-project"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-cli"</span>: <span class="string">"^6.0.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，我们不直接从命令行运行 Babel 了，取而代之我们将把运行命令写在 <strong>npm scripts</strong> 里，这样可以使用 Babel 的本地版本。</p>
+<p>只需将 <code>&quot;scripts&quot;</code> 字段添加到你的 <code>package.json</code> 文件内并且把 babel 命令写成 <code>build</code> 字段。.</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">    "name": "my-project",</span><br><span class="line">    "version": "1.0.0",</span><br><span class="line"><span class="addition">+   "scripts": &#123;</span></span><br><span class="line"><span class="addition">+     "build": "babel src -d lib"</span></span><br><span class="line"><span class="addition">+   &#125;,</span></span><br><span class="line">    "devDependencies": &#123;</span><br><span class="line">      "babel-cli": "^6.0.0"</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以在终端里运行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<p>这将以与之前同样的方式运行 Babel，但这一次我们使用的是本地副本。</p>
+<h3 id="babel-register"><a href="#babel-register" class="headerlink" title="babel-register"></a><a id="toc-babel-register"></a><code>babel-register</code></h3><p>下一个常用的运行 Babel 的方法是通过 <code>babel-register</code>。这种方法只需要引入文件就可以运行 Babel，或许能更好地融入你的项目设置。</p>
+<p>但请注意这种方法并不适合正式产品环境使用。 直接部署用此方式编译的代码不是好的做法。 在部署之前预先编译会更好。 不过用在构建脚本或是其他本地运行的脚本中是非常合适的。</p>
+<p>让我们先在项目中创建 <code>index.js</code> 文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"Hello world"</span>)</span><br></pre></td></tr></table></figure>
+<p>如果我们用 <code>node index.js</code> 来运行它是不会使用 Babel 来编译的。所以我们需要设置 <code>babel-register</code>。.</p>
+<p>首先安装 <code>babel-register</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-register</span><br></pre></td></tr></table></figure>
+<p>接着，在项目中创建 <code>register.js</code> 文件并添加如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"babel-register"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"./index.js"</span>);</span><br></pre></td></tr></table></figure>
+<p>这样做可以把 Babel <em>注册</em>到 Node 的模块系统中并开始编译其中 <code>require</code> 的所有文件。</p>
+<p>现在我们可以使用 <code>register.js</code> 来代替 <code>node index.js</code> 来运行了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node register.js</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：你不能在你要编译的文件内同时注册 Babel，因为 node 会在 Babel 编译它之前就将它执行了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"babel-register"</span>);</span><br><span class="line"><span class="comment">// 未编译的：</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Hello world!"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="babel-node"><a href="#babel-node" class="headerlink" title="babel-node"></a><a id="toc-babel-node"></a><code>babel-node</code></h2><p>如果你要用 <code>node</code> CLI 来运行代码，那么整合 Babel 最简单的方式就是使用 <code>babel-node</code> CLI，它是 <code>node</code> CLI 的替代品。</p>
+<p>但请注意这种方法并不适合正式产品环境使用。 直接部署用此方式编译的代码不是好的做法。 在部署之前预先编译会更好。 不过用在构建脚本或是其他本地运行的脚本中是非常合适的。</p>
+<p>首先确保 <code>babel-cli</code> 已经安装了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-cli</span><br></pre></td></tr></table></figure>
+<p>然后用<code>babel-node</code> 来替代<code>node</code>运行所有的代码。</p>
+<p>如果用 npm <code>script</code> 的话只需要这样做：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">    "scripts": &#123;</span><br><span class="line"><span class="deletion">-     "script-name": "node script.js"</span></span><br><span class="line"><span class="addition">+     "script-name": "babel-node script.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>要不然的话你需要写全 <code>babel-node</code> 的路径。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- node script.js</span></span><br><span class="line"><span class="addition">+ ./node_modules/.bin/babel-node script.js</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示：你可以使用 <a href="https://www.npmjs.com/package/npm-run" target="_blank" rel="noopener"><code>npm-run</code></a></p>
+</blockquote>
+<h2 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a><a id="toc-babel-core"></a><code>babel-core</code></h2><p>如果你需要以编程的方式来使用 Babel，可以使用 <code>babel-core</code> 这个包。</p>
+<p>首先安装 <code>babel-core</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install babel-core</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> babel = <span class="built_in">require</span>(<span class="string">"babel-core"</span>);</span><br></pre></td></tr></table></figure>
+<p>字符串形式的 JavaScript 代码可以直接使用 <code>babel.transform</code> 来编译。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">babel.transform(<span class="string">"code();"</span>, options);</span><br><span class="line"><span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果是文件的话，可以使用异步 api：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">babel.transformFile(<span class="string">"filename.js"</span>, options, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  result; <span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>或者是同步 api：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">babel.transformFileSync(<span class="string">"filename.js"</span>, options);</span><br><span class="line"><span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br></pre></td></tr></table></figure>
+<p>要是已经有一个 Babel AST（抽象语法树）了就可以直接从 AST 进行转换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">babel.transformFromAst(ast, code, options);</span><br><span class="line"><span class="comment">// =&gt; &#123; code, map, ast &#125;</span></span><br></pre></td></tr></table></figure>
+<p>对于上述所有方法，<code>options</code> 指的都是 <a href="http://babeljs.io/docs/usage/options/" target="_blank" rel="noopener">http://babeljs.io/docs/usage/options/</a></p>
+<hr>
+<h1 id="配置-Babel"><a href="#配置-Babel" class="headerlink" title="配置 Babel"></a><a id="toc-configuring-babel"></a>配置 Babel</h1><p>你或许已经注意到了，目前为止通过运行 Babel 自己我们并没能“翻译”代码，而仅仅是把代码从一处拷贝到了另一处。</p>
+<p>这是因为我们还没告诉 Babel 要做什么。</p>
+<blockquote>
+<p>由于 Babel 是一个可以用各种花样去使用的通用编译器，因此默认情况下它反而什么都不做。你必须明确地告诉 Babel 应该要做什么。</p>
+</blockquote>
+<p>你可以通过安装<strong>插件</strong>（plugins）或<strong>预设</strong>（presets，也就是一组插件）来指示 Babel 去做什么事情。</p>
+<h2 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a><a id="toc-babelrc"></a><code>.babelrc</code></h2><p>在我们告诉 Babel 该做什么之前，我们需要创建一个配置文件。你需要做的就是在项目的根路径下创建 <code>.babelrc</code> 文件。然后输入以下内容作为开始：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [],</span><br><span class="line">  <span class="string">"plugins"</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个文件就是用来告诉Babel做你要他做的事情的配置文件。</p>
+<blockquote>
+<p><strong>注意</strong>:尽管你也可以用其他方式给 Babel 传递选项，但 <code>.babelrc</code> 文件是约定也是最好的方式。</p>
+</blockquote>
+<h2 id="babel-preset-es2015"><a href="#babel-preset-es2015" class="headerlink" title="babel-preset-es2015"></a><a id="toc-babel-preset-es2015"></a><code>babel-preset-es2015</code></h2><p>我们先从让 Babel 把 ES2015（最新版本的 JavaScript 标准，也叫做 ES6）编译成 ES5（现今在大多数 JavaScript 环境下可用的版本）开始吧。</p>
+<p>我们需要安装 “es2015” Babel 预设：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-preset-es2015</span><br></pre></td></tr></table></figure>
+<p>我们修改 <code>.babelrc</code> 来包含这个预设。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">    "presets": [</span><br><span class="line"><span class="addition">+     "es2015"</span></span><br><span class="line">    ],</span><br><span class="line">    "plugins": []</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="babel-preset-stage-x"><a href="#babel-preset-stage-x" class="headerlink" title="babel-preset-stage-x"></a><a id="toc-babel-preset-stage-x"></a><code>babel-preset-stage-x</code></h2><p>JavaScript 还有一些提案，正在积极通过 TC39（ECMAScript 标准背后的技术委员会）的流程成为标准的一部分。</p>
+<p>这个流程分为 5（0－4）个阶段。 随着提案得到越多的关注就越有可能被标准采纳，于是他们就继续通过各个阶段，最终在阶段 4 被标准正式采纳。</p>
+<p>以下是4 个不同阶段的（打包的）预设：</p>
+<ul>
+<li><code>babel-preset-stage-0</code></li>
+<li><code>babel-preset-stage-1</code></li>
+<li><code>babel-preset-stage-2</code></li>
+<li><code>babel-preset-stage-3</code></li>
+</ul>
+<blockquote>
+<p>注意 stage-4 预设是不存在的因为它就是上面的 <code>es2015</code> 预设。</p>
+</blockquote>
+<p>以上每种预设都依赖于紧随的后期阶段预设。例如，<code>babel-preset-stage-1</code> 依赖 <code>babel-preset-stage-2</code>，后者又依赖 <code>babel-preset-stage-3</code>。.</p>
+<p>使用的时候只需要安装你想要的阶段就可以了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-preset-stage-2</span><br></pre></td></tr></table></figure>
+<p>然后添加进你的 <code>.babelrc</code> 配置文件。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">    "presets": [</span><br><span class="line">      "es2015",</span><br><span class="line"><span class="addition">+     "stage-2"</span></span><br><span class="line">    ],</span><br><span class="line">    "plugins": []</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="执行-Babel-生成的代码"><a href="#执行-Babel-生成的代码" class="headerlink" title="执行 Babel 生成的代码"></a><a id="toc-executing-babel-generated-code"></a>执行 Babel 生成的代码</h1><p>即便你已经用 Babel 编译了你的代码，但这还不算完。</p>
+<h2 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a><a id="toc-babel-polyfill"></a><code>babel-polyfill</code></h2><p>Babel 几乎可以编译所有时新的 JavaScript 语法，但对于 APIs 来说却并非如此。</p>
+<p>比方说，下列含有箭头函数的需要编译的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAll</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>).reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终会变成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAll</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而，它依然无法随处可用因为不是所有的 JavaScript 环境都支持 <code>Array.from</code>。</p>
+<pre><code>Uncaught TypeError: Array.from is not a function
+</code></pre><p>为了解决这个问题，我们使用一种叫做 <a href="https://remysharp.com/2010/10/08/what-is-a-polyfill" target="_blank" rel="noopener">Polyfill（代码填充，也可译作兼容性补丁）</a> 的技术。 简单地说，polyfill 即是在当前运行环境中用来复制（意指模拟性的复制，而不是拷贝）尚不存在的原生 api 的代码。 能让你提前使用还不可用的 APIs，<code>Array.from</code> 就是一个例子。</p>
+<p>Babel 用了优秀的 <a href="https://github.com/zloirock/core-js" target="_blank" rel="noopener">core-js</a> 用作 polyfill，并且还有定制化的 <a href="https://github.com/facebook/regenerator" target="_blank" rel="noopener">regenerator</a> 来让 generators（生成器）和 async functions（异步函数）正常工作。</p>
+<p>要使用 Babel polyfill，首先用 npm 安装它：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save babel-polyfill</span><br></pre></td></tr></table></figure>
+<p>然后只需要在文件顶部导入 polyfill 就可以了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"babel-polyfill"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="babel-runtime"><a href="#babel-runtime" class="headerlink" title="babel-runtime"></a><a id="toc-babel-runtime"></a><code>babel-runtime</code></h2><p>为了实现 ECMAScript 规范的细节，Babel 会使用“助手”方法来保持生成代码的整洁。</p>
+<p>由于这些助手方法可能会特别长并且会被添加到每一个文件的顶部，因此你可以把它们统一移动到一个单一的“运行时（runtime）”中去。</p>
+<p>通过安装 <code>babel-plugin-transform-runtime</code> 和 <code>babel-runtime</code> 来开始。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save-dev babel-plugin-transform-runtime</span><br><span class="line">$ npm install --save babel-runtime</span><br></pre></td></tr></table></figure>
+<p>然后更新 <code>.babelrc</code>：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">    "plugins": [</span><br><span class="line"><span class="addition">+     "transform-runtime",</span></span><br><span class="line">      "transform-es2015-classes"</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>现在，Babel 会把这样的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  method() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _classCallCheck <span class="keyword">from</span> <span class="string">"babel-runtime/helpers/classCallCheck"</span>;</span><br><span class="line"><span class="keyword">import</span> _createClass <span class="keyword">from</span> <span class="string">"babel-runtime/helpers/createClass"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> Foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    _classCallCheck(<span class="keyword">this</span>, Foo);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _createClass(Foo, [&#123;</span><br><span class="line">    key: <span class="string">"method"</span>,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span> <span class="title">method</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  &#125;]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> Foo;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>这样就不需要把 <code>_classCallCheck</code> 和 <code>_createClass</code> 这两个助手方法放进每一个需要的文件里去了。</p>
+<hr>
+<h1 id="配置-Babel（进阶）"><a href="#配置-Babel（进阶）" class="headerlink" title="配置 Babel（进阶）"></a><a id="toc-configuring-babel-advanced"></a>配置 Babel（进阶）</h1><p>大多数人使用 Babel 的内建预设就足够了，不过 Babel 提供了更多更细粒度的能力。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS模块/" rel="tag"># JS模块</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/vue-music目录及样式初始化/" rel="next" title="vue-music目录及样式初始化">
+                <i class="fa fa-chevron-left"></i> vue-music目录及样式初始化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/31/RequireJs/" rel="prev" title="使用RequireJs的好处">
+                使用RequireJs的好处 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="xmlxyl">
+            
+              <p class="site-author-name" itemprop="name">xmlxyl</p>
+              <div class="site-description motion-element" itemprop="description">Some notes when studying.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/wx170903" title="GitHub &rarr; https://github.com/wx170903" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/xianyili812@163.com" title="E-Mail &rarr; xianyili812@163.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5100126828" title="Weibo &rarr; https://weibo.com/5100126828" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Babel"><span class="nav-number">2.</span> <span class="nav-text">安装 Babel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-cli"><span class="nav-number">2.1.</span> <span class="nav-text">babel-cli</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在项目内运行-Babel-CLI"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 在项目内运行 Babel CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel-register"><span class="nav-number">2.1.2.</span> <span class="nav-text">babel-register</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-node"><span class="nav-number">2.2.</span> <span class="nav-text">babel-node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-core"><span class="nav-number">2.3.</span> <span class="nav-text">babel-core</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-Babel"><span class="nav-number">3.</span> <span class="nav-text">配置 Babel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babelrc"><span class="nav-number">3.1.</span> <span class="nav-text">.babelrc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-preset-es2015"><span class="nav-number">3.2.</span> <span class="nav-text">babel-preset-es2015</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-preset-stage-x"><span class="nav-number">3.3.</span> <span class="nav-text">babel-preset-stage-x</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行-Babel-生成的代码"><span class="nav-number">4.</span> <span class="nav-text">执行 Babel 生成的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-polyfill"><span class="nav-number">4.1.</span> <span class="nav-text">babel-polyfill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel-runtime"><span class="nav-number">4.2.</span> <span class="nav-text">babel-runtime</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-Babel（进阶）"><span class="nav-number">5.</span> <span class="nav-text">配置 Babel（进阶）</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xmlxyl</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
